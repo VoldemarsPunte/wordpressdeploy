@@ -74,6 +74,7 @@ Where available service name is
 * nginx 
 * mysql
 * php7.2-fpm
+
 and service action is 
 * start
 * stop
