@@ -1,2 +1,0 @@
-[appservers-php]
-example.com ansible_ssh_host=10.0.1.71 ansible_ssh_user=waldo
