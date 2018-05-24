@@ -27,7 +27,7 @@ Tested on Ubuntu Server 18.04 LTS
 
 ### Configuration
 
-Deployment configuration stored under "vars" section in wordpress.yml file
+Deployment configuration stored under "vars" section in wordpress.yml file. 
 Configuration file include variables for Wordpress database name, username, password and installation path on remote host.
 
 ### Deploying
@@ -70,9 +70,14 @@ You can control services on remote host using command
 ```
 ./run.sh service <service name> <service action>
 ```
-Where available <service name> is nginx, mysql, php7.2-fpm
-and <service action> is start, stop, restart
-
+Where available service name is 
+* nginx 
+* mysql
+* php7.2-fpm
+and service action is 
+* start
+* stop
+* restart
 
 
 ## Built With
@@ -81,5 +86,6 @@ and <service action> is start, stop, restart
 
 
 ### Acknowledgments
-Partialy using code from https://github.com/DmitriyLyalyuev/wp2vps
+Partialy using code from 
+* [wp2vps](https://github.com/DmitriyLyalyuev/wp2vp)s
 
