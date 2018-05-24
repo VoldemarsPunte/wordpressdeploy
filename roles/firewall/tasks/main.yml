@@ -1,0 +1,15 @@
+- name: Enable ufw
+  ufw: state=enabled policy=allow
+
+- name: Disable default in
+  ufw: direction=incoming policy=deny
+
+- name: Allow ssh in
+  ufw: rule=limit name=OpenSSH
+
+- name: 80 is open
+  ufw: rule=allow port=80 proto=tcp
+
+- name: 443 is open
+  ufw: rule=allow port=443 proto=tcp
+

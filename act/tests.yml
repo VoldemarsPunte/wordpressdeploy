@@ -1,0 +1,36 @@
+- hosts: appservers-php
+  sudo: yes
+
+  tasks:
+          - name: ssh port test
+            wait_for:
+                host: "{{ ip }}"
+                port: 22
+                timeout: 3
+                delay: 0
+            ignore_errors: yes
+            delegate_to: localhost
+          - name: web port test
+            wait_for:
+                host: "{{ ip }}"
+                port: 80
+                timeout: 3
+                delay: 0
+            ignore_errors: yes
+            delegate_to: localhost
+          - name: MySQL port test
+            wait_for:
+                host: "{{ ip }}"
+                port: 3306
+                timeout: 3
+                delay: 0
+            ignore_errors: yes
+          - name: Wordpress web page test
+            uri:
+                url: "http://{{ ip }}/"
+                return_content: yes
+            register: webpage
+          - assert:
+                  that:
+                          - "'wordpress' in webpage.content"
+            ignore_errors: yes

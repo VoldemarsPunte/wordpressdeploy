@@ -1,0 +1,59 @@
+- hosts: appservers-php
+  sudo: yes
+  gather_facts: False
+  tasks:
+        - name: Stop Nginx service
+          service:
+                name: nginx
+                state: stopped
+          ignore_errors: yes
+        - name: Stop MySQL service
+          service:
+                name: mysql
+                state: stopped
+          ignore_errors: yes
+        - name: Stop php-fpm service
+          service:
+                name: php7.2-fpm
+                state: stopped
+          ignore_errors: yes
+        - name: uninstall packages
+          apt:
+                pkg={{ item }}
+                state=absent
+                purge=yes
+                force=yes
+          with_items:
+                - php
+                - php-cgi
+                - php-fpm
+                - php-memcache
+                - php-memcached
+                - php-mysql
+                - php-gd
+                - php-curl
+                - php-xmlrpc
+                - nginx-extras
+                - percona-server-server-5.5
+                - percona-server-client-5.5
+                - python-mysqldb
+                - memcached
+          ignore_errors: yes
+        - name: Remove dependencies that are no longer required
+          apt:
+                autoremove: yes
+          ignore_errors: yes
+        - name: delete wordpress web directory
+          file:
+                path: /var/www/wordpress
+                state: absent
+          ignore_errors: yes
+        - name: delete wordpress web directory
+          file:
+                path: /tmp/latest.tar.gz
+                state: absent
+          ignore_errors: yes
+        - name: Disable ufw
+          ufw: state=disabled
+          ignore_errors: yes
+

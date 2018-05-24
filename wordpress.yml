@@ -1,0 +1,24 @@
+- hosts: appservers-php
+  sudo: yes
+  gather_facts: False
+  pre_tasks:
+  - name: Install python for Ansible
+    raw: test -e /usr/bin/python || (apt -y update && apt install -y python-simplejson)
+    changed_when: False
+  - setup: # aka gather_facts
+  vars:
+    - mysql_root_password: "jbHcwr_QAI6EfCgK"
+    - domain: "example.com"
+    - download_url: "http://wordpress.org/latest.tar.gz"
+    - wpdirectory: "/var/www"
+    - db_name: "wordpress"
+    - db_user: "wordpress"
+    - db_password: "wordpress"
+  roles:
+  - { role: firewall }        
+  - { role: nginx }
+  - { role: percona-mysql }
+  - { role: memcached }
+  - { role: php }
+  - { role: wordpress }
+

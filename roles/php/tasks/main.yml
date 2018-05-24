@@ -1,0 +1,19 @@
+- name: install php
+  apt: pkg={{ item }}
+  with_items:
+    - php
+    - php-cgi
+    - php-fpm
+    - php-memcache
+    - php-memcached
+    - php-mysql
+    - php-gd
+    - php-curl
+    - php-xmlrpc
+
+- name: change listen socket
+  lineinfile:
+    dest: '/etc/php/7.2/fpm/pool.d/www.conf'
+    insertafter: 'listen = 127.0.0.1:9000'
+    line: 'listen = /var/run/fpm.socket'
+  notify: restart php-fpm
