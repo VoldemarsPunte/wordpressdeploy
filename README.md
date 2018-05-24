@@ -88,5 +88,5 @@ and service action is
 
 ### Acknowledgments
 Partialy using code from 
-* [wp2vps](https://github.com/DmitriyLyalyuev/wp2vp)s
+* [wp2vps](https://github.com/DmitriyLyalyuev/wp2vps)
 
