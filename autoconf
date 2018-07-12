@@ -1,0 +1,14 @@
+DRIVE1 /dev/sda
+DRIVE2 /dev/sdb
+
+SWRAID 1
+SWRAIDLEVEL 1
+
+BOOTLOADER grub
+
+HOSTNAME hetzner16
+
+PART /boot ext3 512M
+PART /     ext4 100G
+
+IMAGE /root/images/Ubuntu-1604-xenial-64-minimal.tar.gz
